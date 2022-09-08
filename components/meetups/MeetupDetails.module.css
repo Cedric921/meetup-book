@@ -1,0 +1,37 @@
+.meetup {
+   width: 50%;
+	margin: 20px auto;
+   color: black;
+   text-align: center;
+}
+
+.meetup h2 {
+   margin: 20px;
+   font-size: 30px;
+   color: #4e9490;
+}
+
+.meetup address {
+   color: #4e9490;
+}
+
+.meetup p{
+   margin-top: 20px;
+   text-align: left;
+}
+
+.image {
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+   width: 100%;
+   height: 300px;
+   background-color: #376967;
+}
+
+.image img {
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
