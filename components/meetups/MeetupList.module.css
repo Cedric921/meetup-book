@@ -1,6 +1,6 @@
 
 .meetups {
-   background-color: aliceblue;
+   background-color: #32685b;
 
    margin: 0;
 
@@ -8,4 +8,5 @@
    gap: 10px;
    justify-content: center;
    align-items: center;
+   flex-wrap: wrap;
 }
