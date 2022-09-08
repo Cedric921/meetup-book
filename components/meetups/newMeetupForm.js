@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './newMeetupForm.module.css'
+
 const NewMeetupForm = () => {
 	const [newMeetup, setNewMeetup] = useState({
 		title: '',
@@ -11,7 +13,7 @@ const NewMeetupForm = () => {
 		e.preventDefault();
 	};
 	return (
-		<div>
+		<>
 			<form onSubmit={submitHandler}>
 				<div className='form-goup'>
 					<label htmlFor='title'>Title</label>
@@ -20,8 +22,12 @@ const NewMeetupForm = () => {
 						name='title'
 						id='title'
 						placeholder='Title'
+						className='form-control'
 						onChange={(e) =>
-							setNewMeetup(...newMeetup, { [e.target.id]: e.target.value })
+							setNewMeetup((prev) => ({
+								...prev,
+								[e.target.id]: e.target.value,
+							}))
 						}
 					/>
 				</div>
@@ -31,9 +37,13 @@ const NewMeetupForm = () => {
 						type='text'
 						name='adress'
 						id='address'
+						className='form-control'
 						placeholder='Address'
 						onChange={(e) =>
-							setNewMeetup(...newMeetup, { [e.target.id]: e.target.value })
+							setNewMeetup((prev) => ({
+								...prev,
+								[e.target.id]: e.target.value,
+							}))
 						}
 					/>
 				</div>
@@ -43,26 +53,34 @@ const NewMeetupForm = () => {
 						type='text'
 						name='image'
 						id='image'
+						className='form-control'
 						placeholder='Images'
 						onChange={(e) =>
-							setNewMeetup(...newMeetup, { [e.target.id]: e.target.value })
+							setNewMeetup((prev) => ({
+								...prev,
+								[e.target.id]: e.target.value,
+							}))
 						}
 					/>
 				</div>
 				<div className='form-goup'>
 					<label htmlFor='title'>Description</label>
-					<input
+					<textarea
 						type='text'
 						name='description'
 						id='description'
+						className='form-control'
 						placeholder='Description'
 						onChange={(e) =>
-							setNewMeetup(...newMeetup, { [e.target.id]: e.target.value })
+							setNewMeetup((prev) => ({
+								...prev,
+								[e.target.id]: e.target.value,
+							}))
 						}
-					/>
+					></textarea>
 				</div>
 			</form>
-		</div>
+		</>
 	);
 };
 

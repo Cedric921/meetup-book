@@ -1,0 +1,13 @@
+.singleMeetup {
+	background: rgb(0, 155, 108);
+	padding: 20px;
+	margin: 20px;
+
+	border-radius: 10px;
+   box-shadow: 0 0 20px rgb(170, 170, 170);
+
+	width: 350px;
+	height: 300px;
+
+	text-align: center;
+}
