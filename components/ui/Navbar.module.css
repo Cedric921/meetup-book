@@ -1,0 +1,33 @@
+.navbar {
+	width: 100%;
+
+	margin: 0;
+	padding: 20px 30px;
+	background-color: #4e9490;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+.title {
+	font-size: 28px;
+}
+
+.menu {
+	list-style: none;
+	display: flex;
+	gap: 0px;
+
+	font-size: 20px;
+}
+
+.menu li {
+	background-color: #115a5625;
+	padding: 10px;
+
+	transition: all 0.5s ease-in;
+}
+
+.menu li:hover {
+	background-color: #376967;
+}

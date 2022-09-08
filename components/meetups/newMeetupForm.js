@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './newMeetupForm.module.css'
+import classes from './newMeetupForm.module.css';
 
 const NewMeetupForm = () => {
 	const [newMeetup, setNewMeetup] = useState({
@@ -14,7 +14,7 @@ const NewMeetupForm = () => {
 	};
 	return (
 		<>
-			<form onSubmit={submitHandler}>
+			<form onSubmit={submitHandler} className={classes.meetupForm}>
 				<div className='form-goup'>
 					<label htmlFor='title'>Title</label>
 					<input
@@ -78,6 +78,9 @@ const NewMeetupForm = () => {
 							}))
 						}
 					></textarea>
+				</div>
+            <div className={classes.actions}>
+					<button type='submit'>Enregistrer</button>
 				</div>
 			</form>
 		</>
