@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import MeetupList from '../components/meetups/MeetupList';
 
 const MEETUPS = [
@@ -20,9 +21,15 @@ const MEETUPS = [
 ];
 
 export default function Home() {
+	const [meetups, setMeetups] = useState([]);
+
+	useEffect(() => {
+		// set a http request to get meetups from the server
+		setMeetups(MEETUPS);
+	}, []);
 	return (
 		<>
-			<MeetupList meetups={MEETUPS} />
+			<MeetupList meetups={meetups} />
 		</>
 	);
 }

@@ -1,17 +1,17 @@
 import React from 'react';
 
-import classes from './MeetupDetails.module.css'
+import classes from './MeetupDetails.module.css';
 
-const MeetupDetails = () => {
+const MeetupDetails = ({ meetup }) => {
 	return (
 		<>
 			<div className={classes.meetup}>
 				<div className={classes.image}>
-					<img alt='meetup image' />
+					<img alt={meetup?.title} src={meetup?.image} />
 				</div>
-				<h2>Meet up title</h2>
-				<address>meet up address</address>
-				<p> meet up description</p>
+				<h2>{meetup?.title}</h2>
+				<address>{meetup?.address}</address>
+				<p> {meetup?.description}</p>
 			</div>
 		</>
 	);

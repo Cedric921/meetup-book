@@ -1,11 +1,11 @@
 .meetupForm {
-	background-color: aliceblue;
+	background-color: rgb(207, 224, 224);
 
-	width: 500px;
+	width: 480px;
 	margin: 20px auto;
 	padding: 20px;
 	border-radius: 10px;
-	box-shadow: 0 0 20px rgba(85, 85, 85, 0.24);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.24);
 
 	display: flex;
 	flex-direction: column;
@@ -27,6 +27,7 @@
 	border: 2px solid #c5c5c5;
 	border-radius: 5px;
 }
+
 
 .actions {
 	width: 100%;
