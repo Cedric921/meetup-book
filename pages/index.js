@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { MongoClient } from 'mongodb';
+
 import MeetupList from '../components/meetups/MeetupList';
 
 const MEETUPS = [
@@ -20,16 +21,48 @@ const MEETUPS = [
 	},
 ];
 
-export default function Home() {
-	const [meetups, setMeetups] = useState([]);
-
-	useEffect(() => {
-		// set a http request to get meetups from the server
-		setMeetups(MEETUPS);
-	}, []);
+export default function Home(props) {
 	return (
 		<>
-			<MeetupList meetups={meetups} />
+			<MeetupList meetups={props.meetups} />
 		</>
 	);
+}
+
+// export const getServerSideProps = async (context) => {
+// 	const { req, res } = context;
+// 	// fetch data from server
+// 	return {
+// 		props: {
+// 			meetups: MEETUPS,
+// 		},
+// 	};
+// };
+
+export async function getStaticProps() {
+	const mongoUrl = process.env.MONGO_URI;
+	const client = await MongoClient.connect(mongoUrl);
+	const db = client.db();
+
+	const meetupsCollection = db.collection('meetups');
+	const meetups = await meetupsCollection.find().toArray();
+	console.log(meetups);
+
+	client.close();
+	// fetch data from server
+	return {
+		props: {
+			meetups: meetups?.map((meetup) => ({
+				title: meetup.title,
+				address: meetup.address,
+				image: meetup.image,
+				// contact: meetup.contact,
+				id: meetup._id.toString(),
+			})),
+		},
+		/** revalidate is the number of seconds who next will wait until it 			 	generate this page for incoming requests
+		 *
+		 */
+		revalidate: 10,
+	};
 }
