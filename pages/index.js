@@ -20,16 +20,39 @@ const MEETUPS = [
 	},
 ];
 
-export default function Home() {
-	const [meetups, setMeetups] = useState([]);
-
-	useEffect(() => {
-		// set a http request to get meetups from the server
-		setMeetups(MEETUPS);
-	}, []);
+export default function Home(props) {
 	return (
 		<>
-			<MeetupList meetups={meetups} />
+			<MeetupList meetups={props.meetups} />
 		</>
 	);
+}
+
+/**
+ *
+ * @param {string} context
+ * @returns {}
+ * this function will run every time in the server for each incoming request
+ */
+// export const getServerSideProps = async (context) => {
+// 	const { req, res } = context;
+// 	// fetch data from server
+// 	return {
+// 		props: {
+// 			meetups: MEETUPS,
+// 		},
+// 	};
+// };
+
+export async function getStaticProps() {
+	// fetch data from server
+	return {
+		props: {
+			meetups: MEETUPS,
+		},
+		/** revalidate is the number od seconds who next will wait until it 			 	generate this page for incoming requests
+		 *
+		 */
+		revalidate: 10,
+	};
 }
