@@ -28,12 +28,7 @@ export default function Home(props) {
 	);
 }
 
-/**
- *
- * @param {string} context
- * @returns {}
- * this function will run every time in the server for each incoming request
- */
+
 // export const getServerSideProps = async (context) => {
 // 	const { req, res } = context;
 // 	// fetch data from server
@@ -50,7 +45,7 @@ export async function getStaticProps() {
 		props: {
 			meetups: MEETUPS,
 		},
-		/** revalidate is the number od seconds who next will wait until it 			 	generate this page for incoming requests
+		/** revalidate is the number of seconds who next will wait until it 			 	generate this page for incoming requests
 		 *
 		 */
 		revalidate: 10,
