@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import classes from './newMeetupForm.module.css';
 
-const NewMeetupForm = () => {
+const NewMeetupForm = ({onAdd}) => {
 	const [newMeetup, setNewMeetup] = useState({
 		title: '',
 		address: '',
@@ -12,6 +12,7 @@ const NewMeetupForm = () => {
 	const submitHandler = (e) => {
 		e.preventDefault();
 		onAdd(newMeetup);
+		
 	};
 	return (
 		<>
