@@ -1,31 +1,51 @@
 import React from 'react';
+import { MongoClient } from 'mongodb';
 import MeetupDetails from '../../components/meetups/MeetupDetails';
 
-const Index = () => {
-	return <MeetupDetails />;
+const mongoUrl = process.env.MONGO_URI;
+const Index = (props) => {
+	console.log('props dynamic => ',props);
+	return <MeetupDetails meetup={props.meetupData} />;
 };
 
-export const getStaticPaths = () => {
+export async function getStaticPaths() {
+	const mongoUrl = process.env.MONGO_URI;
+
+	const client = await MongoClient.connect(mongoUrl);
+	const db = client.db();
+
+	const meetupsCollection = db.collection('meetups');
+	const meetupsId = await meetupsCollection.find({}, { _id: 1 }).toArray();
+	console.log('ids =>', meetupsId);
+
+	client.close();
 	return {
 		fallback: false,
-		paths: [{ params: { meetupId: 'm1' } }, { params: { meetupId: 'm2' } }],
+		paths: meetupsId.map((meetup) => ({
+			params: { meetupId: meetup._id.toString() },
+		})),
 	};
-};
+}
 
 export const getStaticProps = async (context) => {
-	// fetch single meetup from server
 	const id = context.params.meetupId;
-	console.log(id);
+	console.log('id =>', id);
+
+	// fetch single meetup from server
+	const mongoUrl = process.env.MONGO_URI;
+
+	const client = await MongoClient.connect(mongoUrl);
+	const db = client.db();
+
+	const meetupsCollection = db.collection('meetups');
+	const singleMeetup = await meetupsCollection.findOne({ _id:  id });
+	console.log('single meetup', singleMeetup);
+
+	client.close();
+
 	return {
 		props: {
-			meetupData: {
-				id: id,
-				title: 'second meetup',
-				image:
-					'https://dwj199mwkel52.cloudfront.net/assets/core/banners/banner-home-4f942e047c0e2c428d7b4f19dbf9704327349fa6dda769e1add5b2ec26991b94.jpg',
-				address: 'goma, himbi',
-				description: 'second  meetup description',
-			},
+			meetupData: singleMeetup,
 		},
 	};
 };

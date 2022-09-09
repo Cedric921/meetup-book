@@ -3,6 +3,7 @@ import React from 'react';
 import classes from './MeetupDetails.module.css';
 
 const MeetupDetails = ({ meetup }) => {
+	console.log('details =>', meetup);
 	return (
 		<>
 			<div className={classes.meetup}>
