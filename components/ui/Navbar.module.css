@@ -7,32 +7,36 @@
 
 	display: flex;
 	justify-content: space-between;
-   position: fixed;
-   flex-wrap: wrap;
+	position: fixed;
+	flex-wrap: wrap;
 }
 
 .title {
 	font-size: 28px;
-   cursor: pointer;
+	cursor: pointer;
 }
 
 .menu {
 	list-style: none;
 	display: flex;
 	gap: 0px;
-   flex-wrap: wrap;
+	flex-wrap: wrap;
 
 	font-size: 20px;
 }
 
 .menu li {
-	background-color: #115a5625;
-	padding: 10px;
-   min-width: 100px;
-
+	min-width: 100px;
+	height: 90%;
+	
 	transition: all 0.5s ease-in;
 }
 
-.menu li:hover {
+.menu li a {
+	background-color: #115a5625;
+	padding: 10px;
+}
+
+.menu li a:hover {
 	background-color: #376967;
 }
