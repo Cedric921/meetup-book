@@ -1,11 +1,11 @@
 import React from 'react';
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import MeetupDetails from '../../components/meetups/MeetupDetails';
 
 const mongoUrl = process.env.MONGO_URI;
 const Index = (props) => {
-	console.log('props dynamic => ',props);
-	return <MeetupDetails meetup={props.meetupData} />;
+	const meetupData = JSON.parse(props.meetupData);
+	return <MeetupDetails meetup={meetupData} />;
 };
 
 export async function getStaticPaths() {
@@ -38,14 +38,14 @@ export const getStaticProps = async (context) => {
 	const db = client.db();
 
 	const meetupsCollection = db.collection('meetups');
-	const singleMeetup = await meetupsCollection.findOne({ _id:  id });
+	const singleMeetup = await meetupsCollection.findOne({ _id: ObjectId(id) });
 	console.log('single meetup', singleMeetup);
 
 	client.close();
 
 	return {
 		props: {
-			meetupData: singleMeetup,
+			meetupData: JSON.stringify(singleMeetup),
 		},
 	};
 };
